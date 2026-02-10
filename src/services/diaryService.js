@@ -1,5 +1,17 @@
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_UTL}/diaryEntry`;
 
+// show list of diary entries
+const index = async () => {
+    try {
+        const res = await fetch(BASE_URL, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}, 
+        }); 
+        return res.json(); 
+    } catch (err) {
+        console.log(err) 
+    }
+}
+
 // show individual diary entry 
 const show = async (diaryEntryId) => {
     try {
@@ -13,7 +25,7 @@ const show = async (diaryEntryId) => {
 }
 
 // create an entry 
-const create = async (FormData) => {
+const create = async (formData) => {
     try {
         const res = await fetch(BASE_URL, {
             method: 'POST', 
@@ -21,7 +33,7 @@ const create = async (FormData) => {
                 Authorization: `Bearer ${localStorage.getItem('token')}`, 
                 'Content-Type': 'application/json', 
             },
-            body: JSON.stringify(FormData)
+            body: JSON.stringify(formData)
         }); 
         return res.json(); 
     } catch (err) {
@@ -30,7 +42,7 @@ const create = async (FormData) => {
 }
 
 // update an entry 
-const updateDiaryEntry = async (diaryEntryId, FormData) => {
+const updateDiaryEntry = async (diaryEntryId, formData) => {
     try {
         const res = await fetch(`${BASE_URL}/${diaryEntryId}`, {
             method: 'PUT', 
@@ -38,7 +50,7 @@ const updateDiaryEntry = async (diaryEntryId, FormData) => {
                 Authorization: `Bearer ${localStorage.getItem('token')}`, 
                 'Content-Type': 'application/json'
             }, 
-            body: JSON.stringify(FormData), 
+            body: JSON.stringify(formData), 
         }); 
         return res.json(); 
     } catch (err) {
@@ -60,3 +72,11 @@ const deleteDiaryEntry = async (diaryEntryId) => {
         console.log(err); 
     }
 }
+
+export {
+    index, 
+    show, 
+    create, 
+    updateDiaryEntry, 
+    deleteDiaryEntry
+}; 
