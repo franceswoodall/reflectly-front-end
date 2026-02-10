@@ -3,18 +3,18 @@ import { Link } from "react-router";
 import { UserContext} from "../../contexts/UserContext";
 
 const NavBar = () => {
-    const { user, setUser } = UserContext(UserContext)
+    const { user, setUser } = useContext(UserContext)
     const handleSignOut = () => {
-        localStorage.removeItemtem('token')
+        localStorage.removeItem('token')
         setUser(null)
     }
 
     return (
         <nav>
-            { user ? (
+            {user ? (
                 <ul>
                     <li><Link to='/'>Community</Link></li>
-                    <li><Link to='/diary'>{user.displayedname}'s Diary</Link></li>
+                    <li><Link to='/diary'>{user.username}'s Diary</Link></li>
                     <li><Link to='/' onClick= { handleSignOut }>Sign Out</Link> </li>
                 </ul>
             ) : (
