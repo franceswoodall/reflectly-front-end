@@ -1,17 +1,21 @@
-const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_UTL}/auth`;
+const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/auth`;
 
 const signUp = async (formData) => {
+    const newUserData = formData; 
+    if (!newUserData.email) { delete newUserData.email }
+    if (!newUserData.displayName) { delete newUserData.displayName }
+    console.log(newUserData);
     try {
         const res = await fetch(`${BASE_URL}/sign-up`, {
-            method: 'POST',
-            headers: { 'Content=Type': 'application/json'},
-            body: JSON.stringify(formData),
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newUserData),
         });
 
         const data = await res.json();
 
-        if (data.err) {
-            throw new Error(data.err)
+        if (data.error) {
+            throw new Error(data.error);
         }
 
         if (data.token) {
