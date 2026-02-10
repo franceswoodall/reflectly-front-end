@@ -5,7 +5,7 @@ import './App.css'
 import NavBar from './components/NavBar/NavBar';
 
 const App = () => {
-  const { user } = useContext(UserContext);
+  //const { user } = useContext(UserContext);
   
   return (
     <>
