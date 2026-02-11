@@ -23,7 +23,7 @@ const handleChange = (evt) => {
 
 const handleSubmit = async (evt) => {
     evt.preventDefault(); 
-    
+
     const newEntry = await diaryEntryService.create(formData); 
     console.log('form data', formData)
 
