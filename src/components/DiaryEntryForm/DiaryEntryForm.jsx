@@ -118,7 +118,7 @@ const handleSubmit = (evt) => {
         <button type="submit">Create Entry</button>
     
       </form>
-      <DiaryEntryList entries={privateEntries} />
+      
     </main>
   );
 };

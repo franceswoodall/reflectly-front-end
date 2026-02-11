@@ -36,10 +36,22 @@ const App = () => {
     <>
       <NavBar />
         <Routes>
-          <Route path='/' element={<Landing entries={publicEntries}/>}/>
+          <Route path='/' 
+            element={
+              <>
+                <Landing />
+                <DiaryEntryList entries={publicEntries}/>
+              </>
+            }/>
           <Route path='/sign-up' element={<SignUpForm />}/>
           <Route path="/sign-in" element={<SignInForm />} />
-          <Route path='/diary' element={<DiaryEntryForm />} />
+          <Route path='/diary' 
+          element={
+              <>
+                <DiaryEntryList entries={privateEntries} />
+                <DiaryEntryForm />
+              </>
+          } />
         </Routes>
     </>
   );
