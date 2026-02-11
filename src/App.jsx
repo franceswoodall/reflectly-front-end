@@ -12,24 +12,16 @@ import * as diaryService from './services/diaryService'
 
 const App = () => {
   const { user } = useContext(UserContext);
-  const [publicEntries, setPublicEntries] = useState([]);
-  const [privateEntries, setPrivateEntries] = useState([]);
+  const [entries, setEntries] = useState([]);
 
   useEffect(() => {
-    const fetchPrivateEntries = async () => {
-    const entriesData = await diaryService.index(true);
+    const fetchEntries = async () => {
+    const entriesData = await diaryService.index();
     console.log('entries data', entriesData); 
     
-    setPrivateEntries(entriesData);
+    setEntries(entriesData);
     };
-    fetchPrivateEntries();
-
-    const fetchPublicEntries = async () => {
-    const entriesData = await diaryService.index();
-    
-    setPublicEntries(entriesData);
-    };
-    fetchPublicEntries();
+    fetchEntries();
   }, [user]);
 
   
@@ -37,11 +29,11 @@ const App = () => {
     <>
       <NavBar />
         <Routes>
-          <Route path='/' element={<DiaryEntryList entries={publicEntries}/>}/>
+          <Route path='/' element={<DiaryEntryList entries={entries}/>}/>
           <Route path='/sign-up' element={<SignUpForm />}/>
           <Route path="/sign-in" element={<SignInForm />} />
           <Route path='/diaryEntry/new' element={<DiaryEntryForm />} />
-          <Route path='/diary' element={<DiaryEntryList entries={privateEntries} />} />
+          <Route path='/diary' element={<DiaryEntryList entries={entries} />} />
         </Routes>
     </>
   );
