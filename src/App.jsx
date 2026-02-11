@@ -7,8 +7,8 @@ import SignUpForm from './components/SignUpForm/SignUpForm';
 import SignInForm from './components/SignInForm/SignInForm';
 import DiaryEntryForm from './components/DiaryEntryForm/DiaryEntryForm';
 import DiaryEntryList from './components/DiaryEntryList/DiaryEntryList';
-import Community from './components/Community/Community';
 import * as diaryService from './services/diaryService'
+import Landing from './components/Landing/Landing';
 
 const App = () => {
   const { user } = useContext(UserContext);
@@ -36,7 +36,7 @@ const App = () => {
     <>
       <NavBar />
         <Routes>
-          <Route path='/' element={<Community entries={publicEntries}/>}/>
+          <Route path='/' element={<Landing entries={publicEntries}/>}/>
           <Route path='/sign-up' element={<SignUpForm />}/>
           <Route path="/sign-in" element={<SignInForm />} />
           <Route path='/diaryEntry/new' element={<DiaryEntryForm />} />

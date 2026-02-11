@@ -31,14 +31,6 @@ const Landing = () => {
       )}
     </section>
     <section>
-      { diaryEntry.isEntryPublic ? (
-        <ul>
-          <li key={ diaryEntry._id }>
-
-          </li>
-        </ul>
-      ) : ( 'Ok')
-      }
     </section>
     </>
   );
