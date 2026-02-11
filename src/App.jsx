@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useContext, useState, useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router';
+import { UserContext } from './contexts/UserContext';
+import './App.css';
+import NavBar from './components/NavBar/NavBar';
+import SignUpForm from './components/SignUpForm/SignUpForm';
+import SignInForm from './components/SignInForm/SignInForm';
+import DiaryEntryForm from './components/DiaryEntryForm/DiaryEntryForm';
+import DiaryEntryList from './components/DiaryEntryList/DiaryEntryList';
+import Community from './components/Community/Community';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
+  const { user } = useContext(UserContext);
+  
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <NavBar />
+        <Routes>
+          <Route path='/' element={<Community/>}/>
+          <Route path='/sign-up' element={<SignUpForm />}/>
+          <Route path="/sign-in" element={<SignInForm />} />
+          <Route path='/diaryEntry/new' element={<DiaryEntryForm />} />
+          <Route path='/diary-entries' element={<DiaryEntryList />} />
+        </Routes>
     </>
-  )
-}
+  );
+};
 
 export default App
