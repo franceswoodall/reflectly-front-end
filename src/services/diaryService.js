@@ -1,4 +1,4 @@
-const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_UTL}/diaryEntry`;
+const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/diaryEntry`;
 
 // show list of diary entries
 const index = async () => {

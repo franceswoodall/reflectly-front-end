@@ -1,16 +1,21 @@
+import { Link } from 'react-router'; 
 import './DiaryEntryList.css'; 
 
 const DiaryEntryList = (props) => {
-    const entries = props.entries || [
-
-    ]
+  
+    if (!props.entries) {
+        return <main className="diary-list-container"><h1>Loading your entries</h1></main>
+    }
 
     return (
-        <main>
+        <main className="diary-list-container">
             <h1>My Diary Entries</h1>
-            <ul>
-                {entries.map((entry) => (
-                    <li key={entry.timestamp}> 
+            <ul className="timestamp-list">
+                {props.entries.map((entry) => (
+                    <li key={entry._id}>
+                        <Link to={`/diary-entries/${entry._id}`} className="entry-link">
+                        {new Date(entry.createdAt).toLocaleString()}
+                        </Link> 
                     </li>
                 ))}
             </ul>
@@ -20,4 +25,3 @@ const DiaryEntryList = (props) => {
 
 export default DiaryEntryList;
 
-// amend diary entry list - it should show timestamp 

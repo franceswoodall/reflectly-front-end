@@ -1,6 +1,6 @@
 import { useState } from 'react'; 
 import { useNavigate} from 'react-router'; 
-import * as diaryEntryService from '../../services/diaryEntryService'; 
+import * as diaryService from '../../services/diaryService'; 
 
 const DiaryEntryForm = (props) => {
   const navigate = useNavigate(); 
@@ -24,7 +24,7 @@ const handleChange = (evt) => {
 const handleSubmit = async (evt) => {
     evt.preventDefault(); 
 
-    const newEntry = await diaryEntryService.create(formData); 
+    const newEntry = await diaryService.create(formData); 
     console.log('form data', formData)
 
     if (newEntry) {
