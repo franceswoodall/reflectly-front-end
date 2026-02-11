@@ -1,13 +1,33 @@
 import NavBar from "../NavBar/NavBar";
 import { Link } from "react-router"
 import { UserContext } from "../../contexts/UserContext";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
+import DiaryEntryList from "../DiaryEntryList/DiaryEntryList";
 
 
 
 const Landing = () => {
 
   const { user, setUser } = useContext(UserContext)
+  
+    const [publicEntries, setPublicEntries] = useState([]);
+    const [privateEntries, setPrivateEntries] = useState([]);
+  
+    useEffect(() => {
+      const fetchPrivateEntries = async () => {
+      const entriesData = await diaryService.index(true);
+      
+      setPrivateEntries(entriesData);
+      };
+      fetchPrivateEntries();
+  
+      const fetchPublicEntries = async () => {
+      const entriesData = await diaryService.index();
+      
+      setPublicEntries(entriesData);
+      };
+      fetchPublicEntries();
+    }, [user]);
 
   const handleSignOut = () => {
     localStorage.removeItem('token')
@@ -31,6 +51,7 @@ const Landing = () => {
       )}
     </section>
     <section>
+    
     </section>
     </>
   );
