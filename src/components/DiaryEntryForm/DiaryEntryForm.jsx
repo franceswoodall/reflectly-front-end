@@ -20,7 +20,8 @@ const handleChange = (evt) => {
 
 const handleSubmit = (evt) => {
     evt.preventDefault(); 
-    console.log('form data', formData)
+    console.log('form data', formData);
+    props.handleAddEntry(formData.isEntryPublic, formData);
 }; 
 
  return (

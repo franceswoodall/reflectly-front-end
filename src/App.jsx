@@ -24,6 +24,13 @@ const App = () => {
     fetchEntries();
   }, [user]);
 
+  const navigate = useNavigate();
+
+  const handleAddEntry = async (isPublic, diaryFormData) => {
+    const newEntry = await diaryService.create(diaryFormData);
+    setEntries([newEntry, ...entries]);
+    navigate(isPublic ? '/' : '/diary');
+  }
   
   return (
     <>
@@ -32,7 +39,7 @@ const App = () => {
           <Route path='/' element={<DiaryEntryList entries={entries}/>}/>
           <Route path='/sign-up' element={<SignUpForm />}/>
           <Route path="/sign-in" element={<SignInForm />} />
-          <Route path='/diaryEntry/new' element={<DiaryEntryForm />} />
+          <Route path='/diaryEntry/new' element={<DiaryEntryForm handleAddEntry={handleAddEntry}/>} />
           <Route path='/diary' element={<DiaryEntryList entries={entries} />} />
         </Routes>
     </>

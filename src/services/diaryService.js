@@ -10,16 +10,6 @@ const index = async (isPrivate) => {
         const data = await res.json();
         
         return data;
-        // const diaryList = await res.json();
-        
-        // const filteredDiaryList = diaryList.filter((entry) => {
-        //     if (isPrivate === true) {
-        //         return entry.isEntryPublic === false;
-        //     } else {
-        //         return entry.isEntryPublic === true;
-        //     }
-        // })
-        // return filteredDiaryList; 
     } catch (err) {
         console.log(err) 
     }
