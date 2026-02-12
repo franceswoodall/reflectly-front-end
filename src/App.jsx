@@ -61,7 +61,7 @@ const App = () => {
           element={
               <>
                 <DiaryEntryList entries={entries} />
-                <DiaryEntryForm />
+                <DiaryEntryForm handleAddEntry={handleAddEntry}/>
               </>
           } />
         </Routes>

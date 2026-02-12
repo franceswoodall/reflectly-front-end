@@ -7,6 +7,8 @@ const DiaryEntryList = (props) => {
     const entries = props.entries;
     const location = useLocation();
 
+    console.log(entries);
+
     const publicEntries = entries.filter((entry) => {
         return entry.isEntryPublic === true;
     });
