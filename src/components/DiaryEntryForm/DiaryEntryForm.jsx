@@ -69,8 +69,8 @@ const DiaryEntryForm = (props) => {
 
       <div className={styles.input}>
         <label htmlFor="reflection-input" className={styles.label}>Reflections</label> 
-        <input
-        className={styles.textInput}
+        <textarea
+        className={styles.textArea}
           type="text"
           name="reflection"
           id="reflection-input"
@@ -97,7 +97,7 @@ const DiaryEntryForm = (props) => {
       </div>
 
       <div className={styles.input}>
-        <label htmlFor="moodLvl">What is the intensity of your current mood?</label>
+        <label htmlFor="moodLvl" className={styles.label}>Current Mood Level</label>
         <input 
             className={styles.numberInput}
             type="number"
