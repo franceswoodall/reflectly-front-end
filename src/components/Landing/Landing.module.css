@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quattrocento&family=Shrikhand&display=swap');
+
+.landing {
+    width: 100%;
+    display: flex;
+    font-family: 'Quattrocento', sans-serif;
+}
+
+.landing img {
+    width: 500px;
+    height: 500px;
+    mix-blend-mode: multiply;
+    margin-left: 50px;
+}
+
+.landing h1 {
+    letter-spacing: 8px;
+    margin-top: 0;
+    width: 190px;
+    height: 300px;
+    font-size: 120px;
+    color: #814256
+}
+
+.landing div {
+    display: flex;
+    font-size: 20px;
+    flex-direction: column;
+}

@@ -3,6 +3,8 @@ import { Link } from "react-router"
 import { UserContext } from "../../contexts/UserContext";
 import { useContext, useState, useEffect } from "react";
 import DiaryEntryList from "../DiaryEntryList/DiaryEntryList";
+import styles from './Landing.module.css'
+import Logo from '../../assets/images/Logo.png';
 
 const Landing = () => {
 
@@ -15,7 +17,9 @@ const Landing = () => {
 
   return (
     <>
-    <section>
+    <section className={styles.landing}>
+      <img src={Logo} alt='Confused heads' />
+      <div>
       <h1>TRACK YOUR CHANGE.</h1>
       <p>Don’t be ashamed, write about you in the diary and share yourself to others. They can help you.</p>
       { user ? (
@@ -28,6 +32,7 @@ const Landing = () => {
           <li><button><Link to='/sign-up'>Sign Up</Link></button></li>
         </ul>
       )}
+      </div>
     </section>
     <section>
     
