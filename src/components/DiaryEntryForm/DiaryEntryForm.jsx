@@ -6,7 +6,7 @@ import { UserContext } from '../../contexts/UserContext';
 import * as diaryService from '../../services/diaryService';
 
 const DiaryEntryForm = (props) => {
-  const { entryId } = useParams;
+  const { entryId } = useParams();
   console.log( entryId)
   const [formData, setFormData] = useState({
       title: "", 
@@ -119,7 +119,6 @@ const DiaryEntryForm = (props) => {
         </div>
 
         <button type="submit">Create Entry</button>
-    
       </form>
       
     </main>

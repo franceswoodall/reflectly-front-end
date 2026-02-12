@@ -19,7 +19,7 @@ const NavBar = () => {
             {user ? (
                 <ul>
                     <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/diary'>{user.displayName}'s Diary</Link></li>
+                    <li><Link to='/diary'>{user.displayName ? user.displayName : user.username }'s Diary</Link></li>
                     <li><Link to='/' onClick= { handleSignOut }>Sign Out</Link> </li>
                 </ul>
             ) : (

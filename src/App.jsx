@@ -43,30 +43,49 @@ const App = () => {
     const updatedEntry = await diaryService.updateDiaryEntry(entryId, diaryFormData);
     setEntries(entries.map((entry) => (entryId === entry._id ? updatedEntry : entry)));
     navigate(`/diary/${entryId}`);
-  }; //still not tested, still need to add link in show page, entryId is still always undefined.
+  }; //still not tested.
 
   return (
     <>
       <NavBar />
-        <Routes>
-          <Route path='/' 
-            element={
+      <Routes>
+        <Route path='/' element={
               <>
                 <Landing />
                 <DiaryEntryList entries={entries}/>
               </>
             }/>
+        {user ? ( 
+          <>
+              <Route path='/diary' element={
+                <>
+                  <DiaryEntryList entries={entries} />
+                  <DiaryEntryForm handleAddEntry={handleAddEntry}/>
+                </>
+              } />
+
+              <Route path='/diary/:entryId' element={
+                <>
+                    <DiaryEntryList entries={entries} />
+                    <DiaryEntryShow handleDeleteEntry={handleDeleteEntry} />
+                </>
+              }/>
+
+
+              <Route path='/diary/:entryId/edit' element={
+                <>
+                  <DiaryEntryList entries={entries} />
+                  <DiaryEntryForm handleUpdateEntry={handleUpdateEntry}/>
+                </>
+              }/>
+          </>
+        ) : (
+        <>
           <Route path='/sign-up' element={<SignUpForm />}/>
           <Route path="/sign-in" element={<SignInForm />} />
-          <Route path='/diary/:entryId' element={<DiaryEntryShow handleDeleteEntry={handleDeleteEntry} />} />
-          <Route path='/diary' 
-          element={
-              <>
-                <DiaryEntryList entries={entries} />
-                <DiaryEntryForm handleAddEntry={handleAddEntry}/>
-              </>
-          } />
-        </Routes>
+        </>
+        )}
+      </Routes>
     </>
   );
 };
