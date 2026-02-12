@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router';
+import DiaryEntryList from '../DiaryEntryList/DiaryEntryList';
+import { UserContext } from '../../contexts/UserContext';
 
 import * as diaryService from '../../services/diaryService';
 
@@ -119,6 +121,7 @@ const DiaryEntryForm = (props) => {
         <button type="submit">Create Entry</button>
     
       </form>
+      
     </main>
   );
 };

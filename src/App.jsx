@@ -7,8 +7,8 @@ import SignUpForm from './components/SignUpForm/SignUpForm';
 import SignInForm from './components/SignInForm/SignInForm';
 import DiaryEntryForm from './components/DiaryEntryForm/DiaryEntryForm';
 import DiaryEntryList from './components/DiaryEntryList/DiaryEntryList';
-import Community from './components/Community/Community';
-import * as diaryService from './services/diaryService';
+import * as diaryService from './services/diaryService'
+import Landing from './components/Landing/Landing';
 
 const App = () => {
   const { user } = useContext(UserContext);
@@ -48,18 +48,22 @@ const App = () => {
     <>
       <NavBar />
         <Routes>
-          <Route path='/' element={<DiaryEntryList entries={entries}/>}/>
+          <Route path='/' 
+            element={
+              <>
+                <Landing />
+                <DiaryEntryList entries={publicEntries}/>
+              </>
+            }/>
           <Route path='/sign-up' element={<SignUpForm />}/>
           <Route path="/sign-in" element={<SignInForm />} />
-          <Route path='/diaryEntry/new' element={<DiaryEntryForm handleAddEntry={handleAddEntry}/>} />
-          <Route path='/diary' element={<DiaryEntryList entries={entries} />} />
-          {/* <Route 
-              path='/diary/:entryId'
-              element={<DiaryEntryShow handleDeleteEntry={handleDeleteEntry}/>}
-            /> */}
-          <Route path='/diary/:entryId/edit'
-          element={<DiaryEntryForm handleUpdateEntry={handleUpdateEntry} />}
-          />
+          <Route path='/diary' 
+          element={
+              <>
+                <DiaryEntryList entries={privateEntries} />
+                <DiaryEntryForm />
+              </>
+          } />
         </Routes>
     </>
   );
