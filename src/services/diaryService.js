@@ -29,16 +29,12 @@ const show = async (diaryEntryId) => {
     try {
         const res = await fetch(`${BASE_URL}/${diaryEntryId}`, {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}, 
-        }); 
-            
-        // console.log('checking diary entry data', data);
-        const data = await res.json();
-        // console.log('checking diary entry data', data);
+        });
 
+        const data = await res.json();
         return data; 
-        
-    } catch (err) {
-        console.log(err)
+    } catch (error) {
+        console.log(error)
     }
 }
 
@@ -53,9 +49,10 @@ const create = async (formData) => {
             },
             body: JSON.stringify(formData)
         }); 
-        return res.json(); 
-    } catch (err) {
-        console.log(err); 
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        console.log(error); 
     }
 }
 
@@ -70,9 +67,10 @@ const updateDiaryEntry = async (diaryEntryId, formData) => {
             }, 
             body: JSON.stringify(formData), 
         }); 
-        return res.json(); 
-    } catch (err) {
-        console.log(err); 
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        console.log(error); 
     }
 }
 
@@ -86,8 +84,8 @@ const deleteDiaryEntry = async (diaryEntryId) => {
             }
         }); 
         return res.json(); 
-    } catch (err) {
-        console.log(err); 
+    } catch (error) {
+        console.log(error); 
     }
 }
 

@@ -7,7 +7,7 @@ import * as diaryService from '../../services/diaryService';
 
 const DiaryEntryForm = (props) => {
   const { entryId } = useParams();
-  console.log( entryId)
+  // console.log( entryId)
   const [formData, setFormData] = useState({
       title: "", 
       reflection: "", 
@@ -24,18 +24,27 @@ const DiaryEntryForm = (props) => {
   }; 
 
   const handleSubmit = (evt) => {
-    evt.preventDefault(); 
+    evt.preventDefault();
+    console.log(formData) 
     if (entryId) {
-      props.handleUpdateEntry(formData.isEntryPublic, entryId, formData);
+      props.handleUpdateEntry(entryId, formData);
     } else {
       props.handleAddEntry(formData.isEntryPublic, formData);
     }
+    setFormData({
+      title: "", 
+      reflection: "", 
+      isEntryPublic: false, 
+      isEntryUsernamePublic: false, 
+      mood: "happy", 
+      moodLvl: 5
+    })
   };
 
   useEffect(() => {
     const fetchEntry = async () => {
       const entryData = await diaryService.show(entryId);
-      setFormData(entryData);
+      setFormData(entryData.diaryEntry);
     };
     if (entryId) fetchEntry();
 
@@ -83,6 +92,11 @@ const DiaryEntryForm = (props) => {
           <option value="happy">Happy</option>
           <option value="sad">Sad</option>
           <option value="bored">Bored</option>
+          <option value="afraid">Afraid</option>
+          <option value="excited">Excited</option>
+          <option value="angry">Angry</option>
+          <option value="surprised">Surprised</option>
+          <option value="calm">Calm</option>
         </select>
 
         <label htmlFor="moodLvl">What is the intensity of your current mood?</label>
@@ -118,7 +132,7 @@ const DiaryEntryForm = (props) => {
             </label>  
         </div>
 
-        <button type="submit">Create Entry</button>
+        <button type="submit">{entryId ? 'Update' : 'Create'}</button>
       </form>
       
     </main>

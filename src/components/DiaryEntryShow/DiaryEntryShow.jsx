@@ -37,11 +37,9 @@ const DiaryEntryShow = (props) => {
                 <h2 id='title'>Your Mood on: {`${new Date(diaryEntry?.createdAt).toLocaleDateString()}`}</h2>
                 <div id='moodList'>
                     <ul>
-                        {diaryEntry?.moodList.map((mood) => (
-                            <li key={mood._id}>
-                                {mood.mood} - Level: {mood.moodLvl}
+                            <li >
+                                {diaryEntry?.mood} - Level: {diaryEntry?.moodLvl}
                             </li>
-                        ))}
                     </ul>
                 </div>
                 <p>{diaryEntry?.reflection}</p>
@@ -49,10 +47,6 @@ const DiaryEntryShow = (props) => {
                     <button id='likeButton' onClick={handleLike}> {diaryEntry?.like?.includes(user._id) ? 'Unlike' : 'Like'} </button>
                     <p id='likeNumber'>{diaryEntry?.like?.length}</p>
                 </div>
-                {/* <div className="actions">
-                        <Link to={`/diary/${entryId}/edit`}>Edit</Link>
-                        <button onClick={() => props.handleDeleteEntry(diaryEntry.isEntryPublic, entryId)}>Delete</button>
-                    </div> */}
                 {user._id === diaryEntry?.owner && (
                     <div className="actions">
                         <Link to={`/diary/${entryId}/edit`}>Edit</Link>

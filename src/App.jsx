@@ -18,7 +18,7 @@ const App = () => {
   useEffect(() => {
     const fetchEntries = async () => {
     const entriesData = await diaryService.index();
-    console.log('entries data', entriesData); 
+    // console.log('entries data', entriesData); 
     
     setEntries(entriesData);
     };
@@ -36,14 +36,14 @@ const App = () => {
   const handleDeleteEntry = async (isPublic, entryId) => {
     const deletedEntry = await diaryService.deleteDiaryEntry(entryId);
     setEntries(entries.filter((entry) => entry._id !== entryId ));
-    navigate(isPublic ? '/' : '/diary');
-  } //still not tested, need to add route for entryShow, finish the show page, finish delete button there, and test 
+    // navigate(isPublic ? '/' : '/diary');
+  };
   
   const handleUpdateEntry = async ( entryId, diaryFormData) => {
     const updatedEntry = await diaryService.updateDiaryEntry(entryId, diaryFormData);
     setEntries(entries.map((entry) => (entryId === entry._id ? updatedEntry : entry)));
     navigate(`/diary/${entryId}`);
-  }; //still not tested.
+  };
 
   return (
     <>
