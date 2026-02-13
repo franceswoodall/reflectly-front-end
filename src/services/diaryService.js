@@ -92,7 +92,7 @@ const deleteDiaryEntry = async (diaryEntryId) => {
 
 const createComment = async (diaryEntryId, commentFormData) => {
   try {
-    console.log(commentFormData)
+    console.log('createcomment', diaryEntryId, commentFormData)
     const res = await fetch(`${BASE_URL}/${diaryEntryId}/comments`, {
       method: `POST`,
       headers: {

@@ -32,7 +32,7 @@ const DiaryEntryShow = (props) => {
 
     const handleAddComment = async (commentFormData) => {
         const newComment = await diaryService.createComment(entryId, commentFormData);
-        setHoot({...hoot, comments: [...hoot.comments, newComment]});
+        setDiaryEntry({...diaryEntry, comments: [...diaryEntry.comments, newComment]});
       }
 
     if (!entryId) return <p>Loading...</p>
@@ -68,10 +68,10 @@ const DiaryEntryShow = (props) => {
                 <article key={comment._id}>
                     <header>
                         <p>
-                            {comment.author?.username || 'Unknown User'} posted on {new Date(comment.createdAt).toLocaleDateString()}
+                            {comment.owner?.displayName || comment.owner?.username}
                         </p>
                 </header>
-                <p>{comment.text}</p>
+                <p>{comment.comment}</p>
                 </article>
             ))}
         </section>
