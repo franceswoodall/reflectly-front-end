@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quattrocento&family=Shrikhand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Pacifico&family=Quattrocento&family=Shrikhand&display=swap');
 
 .landing {
     width: 100%;
@@ -7,6 +7,7 @@
 }
 
 .landing img {
+    margin-top: 20px;
     width: 500px;
     height: 500px;
     mix-blend-mode: multiply;
@@ -14,16 +15,49 @@
 }
 
 .landing h1 {
-    letter-spacing: 8px;
-    margin-top: 0;
-    width: 190px;
+    font-family: 'Pacifico', cursive;
+    margin-top: 10px;
+    margin-left: 150px;
+    width: 300px;
     height: 300px;
+    line-height: 1.2;
+    letter-spacing: 20px;
     font-size: 120px;
     color: #814256
+}
+
+.landing p{
+    letter-spacing: 1px;
+    margin-top: 120px;
+    margin-left: 75px;
 }
 
 .landing div {
     display: flex;
     font-size: 20px;
     flex-direction: column;
+}
+
+.landing ul{
+    margin-left: 150px;
+    width: 600px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.landing button {
+    text-align: center;
+    width: 200px;
+    background-color: #814256;
+    color: #f2e9e1; 
+    border: none; 
+    padding: 10px;
+    border-radius: 8px; 
+    font-weight: 700; 
+}
+
+.signout {
+    margin-left: 200px;
 }

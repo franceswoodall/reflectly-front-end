@@ -58,10 +58,14 @@ const App = () => {
         {user ? ( 
           <>
               <Route path='/diary' element={
-                <>
+                <section className="diary">
+                  <div className='list'>
                   <DiaryEntryList entries={entries} />
+                  </div>
+                  <div className='form'>
                   <DiaryEntryForm handleAddEntry={handleAddEntry}/>
-                </>
+                </div>
+                </section>
               } />
 
               <Route path='/diary/:entryId' element={

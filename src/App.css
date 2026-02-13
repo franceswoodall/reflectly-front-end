@@ -1,0 +1,15 @@
+.diary {
+    display: flex;
+}
+
+.form {
+    width: 100%;
+}
+
+.list {
+    background-color: #814256;
+    border-radius: 12px;
+    margin-left: 20px;
+    margin-top: 20px;
+    height: fit-content;
+}

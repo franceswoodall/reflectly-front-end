@@ -16,6 +16,7 @@ textarea {
 }
 
 .submitForm {
+    margin-top: 0;
     background-color: #ffffff; 
     width: 100%; 
     max-width: 700px; 

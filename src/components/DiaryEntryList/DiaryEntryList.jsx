@@ -4,6 +4,7 @@ import { useLocation, } from 'react-router';
 import { index } from '../../services/diaryService';
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext';
+import styles from './DiaryEntryList.module.css'
 
 const DiaryEntryList = (props) => {
     const entries = props.entries;
@@ -23,7 +24,8 @@ const DiaryEntryList = (props) => {
     return (
         <main>
             {location.pathname === "/" ? (
-                <section>
+                <section className={styles.landinglist}>
+                    <div>
                     <h1>Community Moods</h1>
                     <ul>
                         {publicEntries.map((entry) => (
@@ -35,9 +37,11 @@ const DiaryEntryList = (props) => {
                             </Link>
                         ))}
                     </ul>
+                    </div>
                 </section>
             ) : (
-                <section>
+                <section className={styles.privatelist}>
+                    <div>
                     <h1>My Diary Entries</h1>
                     <ul>
                         {privateEntries.map((entry) => (
@@ -49,6 +53,7 @@ const DiaryEntryList = (props) => {
                             </Link>
                         ))}
                     </ul>
+                </div>
                 </section>
             )}
         </main>
