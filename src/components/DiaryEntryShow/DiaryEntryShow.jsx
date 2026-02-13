@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from 'react'
 import * as diaryService from '../../services/diaryService'
 import { UserContext } from "../../contexts/UserContext"
 import DiaryEntryForm from "../DiaryEntryForm/DiaryEntryForm"
+import CommentsForm from "../CommentsForm/CommentsForm"
 
 const DiaryEntryShow = (props) => {
     const [diaryEntry, setDiaryEntry] = useState(null)
@@ -29,6 +30,11 @@ const DiaryEntryShow = (props) => {
         setDiaryEntry(updatedEntry)
     }
 
+    const handleAddComment = async (commentFormData) => {
+        const newComment = await diaryService.createComment(entryId, commentFormData);
+        setHoot({...hoot, comments: [...hoot.comments, newComment]});
+      }
+
     if (!entryId) return <p>Loading...</p>
 
     return (
@@ -54,7 +60,22 @@ const DiaryEntryShow = (props) => {
                     </div>
                 )}
             </section>
-        </main>
+            <section>
+            <h2>Comments</h2>
+            <CommentsForm handleAddComment={handleAddComment} />
+            {!diaryEntry?.comments?.length && <p>There are no comments</p>}
+            {diaryEntry?.comments?.map((comment) => (
+                <article key={comment._id}>
+                    <header>
+                        <p>
+                            {comment.author?.username || 'Unknown User'} posted on {new Date(comment.createdAt).toLocaleDateString()}
+                        </p>
+                </header>
+                <p>{comment.text}</p>
+                </article>
+            ))}
+        </section>
+    </main>
 )}
 
 export default DiaryEntryShow; 

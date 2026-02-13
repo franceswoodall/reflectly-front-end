@@ -17,7 +17,7 @@ const CommentsForm = ({ diaryEntryId, handleAddComment }) => {
             text: formData.text, 
             diaryEntry: diaryEntryId 
         }; 
-
+console.log(diaryEntryId)
         handleAddComment(commentData); 
 
        

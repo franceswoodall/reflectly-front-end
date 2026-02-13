@@ -10,6 +10,7 @@ import DiaryEntryList from './components/DiaryEntryList/DiaryEntryList';
 import * as diaryService from './services/diaryService'
 import Landing from './components/Landing/Landing';
 import DiaryEntryShow from './components/DiaryEntryShow/DiaryEntryShow';
+import CommentsForm from './components/CommentsForm/CommentsForm';
 
 const App = () => {
   const { user } = useContext(UserContext);

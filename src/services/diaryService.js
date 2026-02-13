@@ -89,10 +89,29 @@ const deleteDiaryEntry = async (diaryEntryId) => {
     }
 }
 
+
+const createComment = async (diaryEntryId, commentFormData) => {
+  try {
+    console.log(commentFormData)
+    const res = await fetch(`${BASE_URL}/${diaryEntryId}/comments`, {
+      method: `POST`,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(commentFormData)
+    })
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export {
     index, 
     show, 
     create, 
+    createComment,
     updateDiaryEntry, 
     deleteDiaryEntry
 }; 

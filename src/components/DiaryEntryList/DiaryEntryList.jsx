@@ -9,18 +9,17 @@ import styles from './DiaryEntryList.module.css'
 const DiaryEntryList = (props) => {
     const entries = props.entries;
     const location = useLocation();
-    const { user } = useContext(UserContext);
+
+    console.log(entries);
 
     const publicEntries = entries.filter((entry) => {
         return entry.isEntryPublic === true;
     });
 
     const privateEntries = entries.filter((entry) => {
-        return user._id === entry.owner;
-    });
-    // console.log('public:',publicEntries);
-    // console.log('private:',privateEntries);
-    // console.log(user._id, entry.owner)
+        return entry.isEntryPublic === false;
+    })
+
     return (
         <main>
             {location.pathname === "/" ? (
