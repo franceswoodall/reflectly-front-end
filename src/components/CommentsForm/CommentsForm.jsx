@@ -3,7 +3,7 @@ import { useState } from 'react';
 // Destructure props 
 const CommentsForm = ({ diaryEntryId, handleAddComment }) => {
     
-    const [formData, setFormData] = useState({ text: '' }); 
+    const [formData, setFormData] = useState({ comment: '' }); 
 
     const handleChange = (evt) => {
         setFormData({ ...formData, [evt.target.name]: evt.target.value }); 
@@ -14,25 +14,24 @@ const CommentsForm = ({ diaryEntryId, handleAddComment }) => {
         
        
         const commentData = {
-            text: formData.text, 
-            diaryEntry: diaryEntryId 
+            comment: formData.comment, 
         }; 
-
+console.log(diaryEntryId)
         handleAddComment(commentData); 
 
        
-        setFormData({ text: '' });
+        setFormData({ comment: '' });
     }; 
 
     
     return (
         <form onSubmit={handleSubmit}>
-            <label htmlFor="text-input">Your Comment: </label>
+            <label htmlFor="comment-input">Your Comment: </label>
             <textarea
                 required
-                name="text" 
-                id="text-input"
-                value={formData.text}
+                name="comment" 
+                id="comment-input"
+                value={formData.comment}
                 onChange={handleChange}
             />
             <button type="submit">Submit Comment</button>

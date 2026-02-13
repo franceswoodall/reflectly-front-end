@@ -10,6 +10,7 @@ import DiaryEntryList from './components/DiaryEntryList/DiaryEntryList';
 import * as diaryService from './services/diaryService'
 import Landing from './components/Landing/Landing';
 import DiaryEntryShow from './components/DiaryEntryShow/DiaryEntryShow';
+import CommentsForm from './components/CommentsForm/CommentsForm';
 
 const App = () => {
   const { user } = useContext(UserContext);
@@ -58,10 +59,14 @@ const App = () => {
         {user ? ( 
           <>
               <Route path='/diary' element={
-                <>
+                <section className="diary">
+                  <div className='list'>
                   <DiaryEntryList entries={entries} />
+                  </div>
+                  <div className='form'>
                   <DiaryEntryForm handleAddEntry={handleAddEntry}/>
-                </>
+                </div>
+                </section>
               } />
 
               <Route path='/diary/:entryId' element={

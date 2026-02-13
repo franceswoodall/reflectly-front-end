@@ -1,29 +1,30 @@
-import './DiaryEntryList.css';
+
 import { Link } from 'react-router';
 import { useLocation, } from 'react-router';
 import { index } from '../../services/diaryService';
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext';
+import styles from './DiaryEntryList.module.css'
 
 const DiaryEntryList = (props) => {
     const entries = props.entries;
     const location = useLocation();
-    const { user } = useContext(UserContext);
+
+    console.log(entries);
 
     const publicEntries = entries.filter((entry) => {
         return entry.isEntryPublic === true;
     });
 
     const privateEntries = entries.filter((entry) => {
-        return user._id === entry.owner;
-    });
-    // console.log('public:',publicEntries);
-    // console.log('private:',privateEntries);
-    // console.log(user._id, entry.owner)
+        return entry.isEntryPublic === false;
+    })
+
     return (
         <main>
             {location.pathname === "/" ? (
-                <section>
+                <section className={styles.landinglist}>
+                    <div>
                     <h1>Community Moods</h1>
                     <ul>
                         {publicEntries.map((entry) => (
@@ -35,9 +36,11 @@ const DiaryEntryList = (props) => {
                             </Link>
                         ))}
                     </ul>
+                    </div>
                 </section>
             ) : (
-                <section>
+                <section className={styles.privatelist}>
+                    <div>
                     <h1>My Diary Entries</h1>
                     <ul>
                         {privateEntries.map((entry) => (
@@ -49,6 +52,7 @@ const DiaryEntryList = (props) => {
                             </Link>
                         ))}
                     </ul>
+                </div>
                 </section>
             )}
         </main>

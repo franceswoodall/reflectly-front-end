@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from 'react'
 import * as diaryService from '../../services/diaryService'
 import { UserContext } from "../../contexts/UserContext"
 import DiaryEntryForm from "../DiaryEntryForm/DiaryEntryForm"
+import CommentsForm from "../CommentsForm/CommentsForm"
 
 const DiaryEntryShow = (props) => {
     const [diaryEntry, setDiaryEntry] = useState(null)
@@ -17,7 +18,7 @@ const DiaryEntryShow = (props) => {
         const fetchDiaryEntry = async () => {
             const diaryEntryData = await diaryService.show(entryId)
             console.log('checking diary inside use effect', diaryEntryData); 
-            setDiaryEntry(diaryEntryData.diaryEntry)
+            setDiaryEntry(diaryEntryData)
         }
         fetchDiaryEntry()
     }, [entryId])
@@ -29,32 +30,52 @@ const DiaryEntryShow = (props) => {
         setDiaryEntry(updatedEntry)
     }
 
+    const handleAddComment = async (commentFormData) => {
+        const newComment = await diaryService.createComment(entryId, commentFormData);
+        setDiaryEntry({...diaryEntry, comments: [...diaryEntry.comments, newComment]});
+      }
+
     if (!entryId) return <p>Loading...</p>
 
     return (
         <main>
             <section>
-                <h2 id='title'>Your Mood on: {`${new Date(diaryEntry?.createdAt).toLocaleDateString()}`}</h2>
+                <h2 id='title'>Your Mood on: {`${new Date(diaryEntry?.diaryEntry.createdAt).toLocaleDateString()}`}</h2>
                 <div id='moodList'>
                     <ul>
                             <li >
-                                {diaryEntry?.mood} - Level: {diaryEntry?.moodLvl}
+                                {diaryEntry?.diaryEntry.mood} - Level: {diaryEntry?.diaryEntry.moodLvl}
                             </li>
                     </ul>
                 </div>
-                <p>{diaryEntry?.reflection}</p>
+                <p>{diaryEntry?.diaryEntry.reflection}</p>
                 <div className='like'>
-                    <button id='likeButton' onClick={handleLike}> {diaryEntry?.like?.includes(user._id) ? 'Unlike' : 'Like'} </button>
-                    <p id='likeNumber'>{diaryEntry?.like?.length}</p>
+                    <button id='likeButton' onClick={handleLike}> {diaryEntry?.diaryEntry.like?.includes(user._id) ? 'Unlike' : 'Like'} </button>
+                    <p id='likeNumber'>{diaryEntry?.diaryEntry.like?.length}</p>
                 </div>
-                {user._id === diaryEntry?.owner && (
+                {user._id === diaryEntry?.diaryEntry.owner && (
                     <div className="actions">
                         <Link to={`/diary/${entryId}/edit`}>Edit</Link>
-                        <button onClick={() => props.handleDeleteEntry(diaryEntry.isEntryPublic, entryId)}>Delete</button>
+                        <button onClick={() => props.handleDeleteEntry(diaryEntry?.diaryEntry.isEntryPublic, entryId)}>Delete</button>
                     </div>
                 )}
             </section>
-        </main>
+            <section>
+            <h2>Comments</h2>
+            <CommentsForm handleAddComment={handleAddComment} />
+            {!diaryEntry?.comments?.length && <p>There are no comments</p>}
+            {diaryEntry?.comments?.map((comment) => (
+                <article key={comment._id}>
+                    <header>
+                        <p>
+                            {comment.owner?.displayName || comment.owner?.username}
+                        </p>
+                </header>
+                <p>{comment.comment}</p>
+                </article>
+            ))}
+        </section>
+    </main>
 )}
 
 export default DiaryEntryShow; 

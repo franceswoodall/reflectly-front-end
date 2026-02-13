@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Pacifico&family=Quattrocento&family=Shrikhand&display=swap');
+
+.landinglist div {
+    width: 500px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.landinglist h1 {
+    letter-spacing: 2px;
+    font-size: 50px;
+    color: #814256;
+}
+
+.landinglist ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 20px;
+}
+
+.privatelist div {
+    width: 500px;
+    margin-top: 20px;
+    margin-left: 20px;
+    color: #ffffff;
+}
+
+.privatelist ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
