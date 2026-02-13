@@ -2,6 +2,8 @@
 
 Reflectly is an app that enables users to track their mental health
 
+Logo can be found in src/assets/images/Logowbg.png
+
 Background and Information 
 
 As a signed in user, you may: 
