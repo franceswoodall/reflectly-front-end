@@ -1,0 +1,109 @@
+button, 
+input, 
+select, 
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+.DiaryEntryForm {
+  display: flex; 
+  justify-content: center;
+  align-items: flex-start; 
+  min-height: 100vh; 
+  padding: 20px;  
+}
+
+.submitForm {
+    background-color: #ffffff; 
+    width: 100%; 
+    max-width: 700px; 
+    height: 100%; 
+    padding: 2.5rem; 
+    border-radius: 12px; 
+    border: 50px solid #814256; 
+    display: flex; 
+    flex-direction: column;
+    gap: 1.5rem; 
+    margin-bottom: 40px; 
+}
+
+.timestampBox {
+    border: 1px dashed #814256; 
+    padding: 8px; 
+    text-align: center;
+    background-color: #fcfaf8;
+    border-radius: 4px;
+}
+
+.dateTimeText {
+    font-size: 0.8rem; 
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #814256; 
+}
+
+.formTitle {
+    color: #814256; 
+    text-align: center;
+    margin: 0;
+}
+
+.input, .inputGroup {
+    display: flex; 
+    flex-direction: column;
+    gap: 0.5rem; 
+}
+
+.label {
+    font-weight: 700;
+    font-size: 0.85rem; 
+    color: #814256; 
+    margin-bottom: 0.4rem;
+    text-transform: none; 
+}
+
+.textInput, .selectInput, .numberInput, .textArea {
+    padding: 0.8rem; 
+    border: 1px solid #e0d5c8; 
+    border-radius: 6px;
+    font-size: 1rem; 
+    background-color: #fff; 
+    width: 100%; 
+}
+
+.textArea {
+    min-height: 180px; 
+    line-height: 1.5; 
+}
+
+.row {
+    display: grid; 
+    grid-template-columns: 1.5fr 1fr; 
+    gap: 1.5rem;
+}
+
+.checkboxContainer { 
+    display: flex; 
+    flex-direction: column;
+    gap: 0.8rem;
+    gap: 0.5rem; 
+}
+
+.checkboxLabel {
+    display: flex; 
+    align-items: center;
+    gap: 10px; 
+    font-size: 0.9rem; ;
+}
+
+.submitBtn {
+    background-color: #814256;
+    color: #f2e9e1; 
+    border: none; 
+    padding: 1rem; 
+    border-radius: 8px; 
+    font-weight: 700;
+    margin-top: 1rem; 
+}
