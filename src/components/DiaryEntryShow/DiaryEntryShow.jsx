@@ -18,7 +18,7 @@ const DiaryEntryShow = (props) => {
         const fetchDiaryEntry = async () => {
             const diaryEntryData = await diaryService.show(entryId)
             console.log('checking diary inside use effect', diaryEntryData); 
-            setDiaryEntry(diaryEntryData.diaryEntry)
+            setDiaryEntry(diaryEntryData)
         }
         fetchDiaryEntry()
     }, [entryId])
@@ -40,23 +40,23 @@ const DiaryEntryShow = (props) => {
     return (
         <main>
             <section>
-                <h2 id='title'>Your Mood on: {`${new Date(diaryEntry?.createdAt).toLocaleDateString()}`}</h2>
+                <h2 id='title'>Your Mood on: {`${new Date(diaryEntry?.diaryEntry.createdAt).toLocaleDateString()}`}</h2>
                 <div id='moodList'>
                     <ul>
                             <li >
-                                {diaryEntry?.mood} - Level: {diaryEntry?.moodLvl}
+                                {diaryEntry?.diaryEntry.mood} - Level: {diaryEntry?.diaryEntry.moodLvl}
                             </li>
                     </ul>
                 </div>
-                <p>{diaryEntry?.reflection}</p>
+                <p>{diaryEntry?.diaryEntry.reflection}</p>
                 <div className='like'>
-                    <button id='likeButton' onClick={handleLike}> {diaryEntry?.like?.includes(user._id) ? 'Unlike' : 'Like'} </button>
-                    <p id='likeNumber'>{diaryEntry?.like?.length}</p>
+                    <button id='likeButton' onClick={handleLike}> {diaryEntry?.diaryEntry.like?.includes(user._id) ? 'Unlike' : 'Like'} </button>
+                    <p id='likeNumber'>{diaryEntry?.diaryEntry.like?.length}</p>
                 </div>
-                {user._id === diaryEntry?.owner && (
+                {user._id === diaryEntry?.diaryEntry.owner && (
                     <div className="actions">
                         <Link to={`/diary/${entryId}/edit`}>Edit</Link>
-                        <button onClick={() => props.handleDeleteEntry(diaryEntry.isEntryPublic, entryId)}>Delete</button>
+                        <button onClick={() => props.handleDeleteEntry(diaryEntry?.diaryEntry.isEntryPublic, entryId)}>Delete</button>
                     </div>
                 )}
             </section>
